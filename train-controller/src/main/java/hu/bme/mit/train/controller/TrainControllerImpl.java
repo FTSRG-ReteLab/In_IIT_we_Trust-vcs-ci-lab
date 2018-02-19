@@ -1,5 +1,7 @@
 package hu.bme.mit.train.controller;
 
+import com.google.common.collect.HashBasedTable;
+import com.google.common.collect.Table;
 import hu.bme.mit.train.interfaces.TrainController;
 
 public class TrainControllerImpl implements TrainController {
@@ -7,6 +9,12 @@ public class TrainControllerImpl implements TrainController {
     private int step = 0;
     private int referenceSpeed = 0;
     private int speedLimit = 0;
+
+    private Table<Long, Integer, Integer> tachograph = HashBasedTable.create();
+
+    public Table<Long, Integer, Integer> getTachograph(){
+        return tachograph;
+    }
 
     @Override
     public void followSpeed() {
@@ -21,6 +29,7 @@ public class TrainControllerImpl implements TrainController {
         }
 
         enforceSpeedLimit();
+        tachograph.put(System.currentTimeMillis(), step, referenceSpeed);
     }
 
     @Override
