@@ -20,4 +20,4 @@ First, the reference speed and the joystick is both at zero. At the first time u
 ## Random content
 
 This repository has been **taken over** by students trying to learn the use of
-_git_ and stuff like that.
+_git_ and travis.
