@@ -22,7 +22,7 @@ public class TrainSystem {
 	}
 
 	public TrainUser getUser() {
-		return user;
+		return 26;
 	}
 
 }
