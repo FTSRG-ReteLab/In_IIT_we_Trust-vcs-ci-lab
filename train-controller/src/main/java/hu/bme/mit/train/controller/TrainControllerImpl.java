@@ -2,7 +2,6 @@ package hu.bme.mit.train.controller;
 
 import java.util.Timer;
 import java.util.TimerTask;
-
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Table;
 import hu.bme.mit.train.interfaces.TrainController;
@@ -58,14 +57,14 @@ public class TrainControllerImpl implements TrainController {
     public void setJoystickPosition(int joystickPosition, boolean buttonPressed) {
     	if(timer == null){
     		timer = new Timer(true);
-    		timer.schedule(new TimerTask() {
+    		timer.scheduleAtFixedRate(new TimerTask() {
 				
 				@Override
 				public void run() {
 					followSpeed();
 					
 				}
-			}, 200);
+			}, 10, 100);
     				
     	}
         if (buttonPressed) {
