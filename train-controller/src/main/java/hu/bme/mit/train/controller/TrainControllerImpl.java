@@ -35,14 +35,6 @@ public class TrainControllerImpl implements TrainController {
 
         enforceSpeedLimit();
         tachograph.put(System.currentTimeMillis(), step, referenceSpeed);
-    	timer.schedule(new TimerTask() {
-			
-			@Override
-			public void run() {
-				followSpeed();
-				
-			}
-		}, 100);
     }
 
     @Override
@@ -65,14 +57,15 @@ public class TrainControllerImpl implements TrainController {
 
     @Override
     public void setJoystickPosition(int joystickPosition, boolean buttonPressed) {
-    	if(timer == null){
+    	
+        if(timer == null){
     		timer = new Timer(true);
-	    	timer.schedule(new TimerTask() {
+	    	timer.scheduleAtFixedRate(new TimerTask() {
 				@Override
 				public void run() {
 					followSpeed();
 				}
-			}, 100);
+			}, 10, 100);
     	}
         if (buttonPressed) {
             this.step = 0;
